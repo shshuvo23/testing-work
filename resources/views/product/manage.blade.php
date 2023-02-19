@@ -6,10 +6,21 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header" style="text-align: center;">
                                 All Product Information
-                            <div>
+                            <div style="text-align: right">
                                 <a href="{{route('product.add')}}" class="btn-primary">Product add</a>
+                            </div>
+                            <div class="row">
+                                <form action="{{route('product.search')}}" method="POST" >
+                                    @csrf
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="search"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary">search</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="card-body">
@@ -22,6 +33,9 @@
                                     <th>Unit</th>
                                     <th>Quantity</th>
                                     <th>Stock Out</th>
+                                    <th>Totall Price</th>
+                                    <th>Payment</th>
+                                    <th>Due</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
@@ -33,12 +47,13 @@
                                             <td>{{ $product->unit }}</td>
                                             <td>{{ $product->quantity}}</td>
                                             <td>{{ $product->stock_out_qty}}</td>
+                                            <td>{{ $product->quantity*$product->price}}</td>
+                                            <td>{{ $product->payment }}</td>
+                                            <td>{{ ($product->quantity*$product->price)-$product->payment }}</td>
+
                                             <td>
                                                 <a href="" class="btn btn-success btn-sm">Detail</a>
                                                 <a href="" class="btn btn-success btn-sm">Edit</a>
-
-
-
                                             </td>
                                         </tr>
                                     @endforeach

@@ -8,7 +8,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h2>Stock In</h2>
+                    <h2 style="text-align: center;">Stock In</h2>
                     <h2 class="text-center text-success">{{Session::get('message')}}</h2>
                 </div>
                 <div class="card-body">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Stock_inController;
@@ -14,10 +15,12 @@ use App\Http\Controllers\Stock_outController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/', [ProductController::class, 'index'])->name('product.add');
 Route::post('/Product/add', [ProductController::class, 'create'])->name('product.create');
 Route::get('/product/manage', [ProductController::class, 'manage'])->name('product.manage');
+Route::post('/product/search', [ProductController::class, 'manage'])->name('product.search');
 
 Route::get('/Product/stock_in', [Stock_inController::class, 'index'])->name('product.stock-in');
 Route::post('/Product/stock_in', [Stock_inController::class, 'create'])->name('product.stock-in-add');

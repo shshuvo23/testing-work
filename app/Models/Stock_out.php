@@ -15,6 +15,8 @@ class Stock_out extends Model
     {
         $product_id = $request->product_id;
         $quantity = $request->stock_out_qty;
+        $payment = $request->payment;
+
 
         $existing_stockout = Stock_out::where('product_id', $product_id)->first();
         if ($existing_stockout) {
@@ -24,6 +26,7 @@ class Stock_out extends Model
             self::$stockout = new Stock_out();
             self::$stockout->product_id = $product_id;
             self::$stockout->stock_out_qty = $quantity;
+            self::$stockout->payment = $payment;
             self::$stockout->save();
         }
 
@@ -32,12 +35,15 @@ class Stock_out extends Model
         if ($stock_in) {
             $total_quantity = $stock_in->quantity - $quantity;
             if ($total_quantity < 0) {
-                throw new Exception("Insufficient stock for product ID $product_id");
+                // throw new Exception("Insufficient stock for product ID $product_id");
+                return "Insufficient stock for product ID ";
             }
             $stock_in->quantity = $total_quantity;
+
             $stock_in->save();
         } else {
-            throw new Exception("Product ID $product_id not found in stock_in table");
+            // throw new Exception("Product ID $product_id not found in stock_in table");
+            return "Product ID  not found in stock_in table";
         }
     }
 

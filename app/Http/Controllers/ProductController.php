@@ -19,13 +19,18 @@ class ProductController extends Controller
         return redirect('/')->with('message', 'Product added successfully');
     }
 
-    public function manage()
+    public function manage(Request $request)
     {
-         $products = Product::join('stock_ins', 'stock_ins.product_id', '=', 'products.id')
-            ->leftjoin('stock_outs', 'stock_outs.product_id', '=', 'products.id')
-            ->orderBy('products.id', 'desc')
-            ->select('products.product_name', 'stock_ins.quantity', 'products.price', 'products.unit', 'stock_outs.stock_out_qty')
-            ->get();
+        // return $request;
+        $products = Product::searchProduct($request);
+        // return $products;
+
+        //  $products = Product::join('stock_ins', 'stock_ins.product_id', '=', 'products.id')
+        //     ->leftjoin('stock_outs', 'stock_outs.product_id', '=', 'products.id')
+        //     ->orderBy('products.id', 'desc')
+        //     ->select('products.product_name', 'stock_ins.quantity', 'products.price', 'products.unit', 'stock_outs.stock_out_qty', 'stock_outs.payment')
+        //     ->get();
+        // return $products;
         return view('product.manage', ['products' => $products]);
     }
 }

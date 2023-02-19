@@ -7,7 +7,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h2>Product add</h2>
+                    <h2 style="text-align: center;">Product add</h2>
                     <h2 class="text-center text-success">{{Session::get('message')}}</h2>
                 </div>
                 <div class="card-body">

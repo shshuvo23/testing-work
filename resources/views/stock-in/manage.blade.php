@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                            All Stock-in Information
+                            <h2 style="text-align: center">All Stock-in Information</h2>
                         {{-- <div>
                             <a href="{{route('product.add')}}" class="btn-primary">Product add</a>
                         </div> --}}

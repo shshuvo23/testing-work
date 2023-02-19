@@ -8,7 +8,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h2>Stock Out</h2>
+                    <h2 style="text-align: center;">Stock Out</h2>
                     <h2 class="text-center text-success">{{Session::get('message')}}</h2>
                 </div>
                 <div class="card-body">
@@ -23,12 +23,19 @@
                               @endforeach
                             </select>
                           </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <label for="validationCustom02" class="form-label">Quantity</label>
                           <input type="number" step="0.1" class="form-control" name="stock_out_qty" id="validationCustom02" value="" required>
                           <div class="valid-feedback">
                             Looks good!
                           </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom05" class="form-label">Payment</label>
+                            <input type="number" step="" class="form-control" name="payment" id="validationCustom05" >
+                            <div class="valid-feedback">
+                                Looks good!
+                              </div>
                         </div>
                         <div class="col-12">
                           <button class="btn btn-primary" type="submit">Stock Out</button>
