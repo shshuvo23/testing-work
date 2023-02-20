@@ -24,10 +24,15 @@ class Product extends Model
     {
         // return $request->search;
         $req = explode(" ", $request->search);
-        if ($req) {
-            for ($i = 0; $i < 2 - count($req); $i++) {
-                array_push($req, "");
-                // return $req;
+        // if ($req) {
+        //     for ($i = 0; $i < 3 - count($req); $i++) {
+        //         array_push($req, "");
+        //         // return $req;
+        //     }
+        // }
+        foreach ([2, 1, 0] as $i) {
+            if (!isset($req[$i])) {
+                $req[$i] = '';
             }
         }
 
@@ -36,13 +41,32 @@ class Product extends Model
             ->leftjoin('stock_outs', 'stock_outs.product_id', '=', 'products.id')
             ->orderBy('products.id', 'desc')
             ->where(function ($query) use ($req) {
-                return $query->where('products.product_name', 'LIKE', '%' . $req[0] . '%')
-                    ->where('products.price', 'LIKE', '%' .  $req[1] . '%');
+                $query->where(function ($query) use ($req) {
+                    $query->where('products.product_name', 'LIKE', '%' . $req[0] . '%');
+                    $query->orWhere('products.price', 'LIKE', '%' . $req[0] . '%');
+                    $query->orWhere('products.unit', 'LIKE', '%' . $req[0] . '%');
+                });
+                $query->where(function ($query) use ($req) {
+                    $query->where('products.product_name', 'LIKE', '%' . $req[1] . '%');
+                    $query->orWhere('products.price', 'LIKE', '%' . $req[1] . '%');
+                    $query->orWhere('products.unit', 'LIKE', '%' . $req[1] . '%');
+                });
+                $query->where(function ($query) use ($req) {
+                    $query->where('products.product_name', 'LIKE', '%' . $req[2] . '%');
+                    $query->orWhere('products.price', 'LIKE', '%' . $req[2] . '%');
+                    $query->orWhere('products.unit', 'LIKE', '%' . $req[2] . '%');
+                });
             })
-            ->orWhere(function ($query) use ($req) {
-                $query->where('products.product_name', 'LIKE', '%' .  $req[1] . '%')
-                    ->where('products.price', 'LIKE', '%' .  $req[0] . '%');
-            })
+            // ->where(function ($query) use ($req) {
+            //     return $query->where('products.product_name', 'LIKE', '%' . $req[0] . '%')
+            //         ->where('products.price', 'LIKE', '%' .  $req[1] . '%')
+            //         ->where('products.unit', 'LIKE', '%' . $req[2] . '%');
+            // })
+            // ->orWhere(function ($query) use ($req) {
+            //     $query->where('products.product_name', 'LIKE', '%' .  $req[2] . '%')
+            //         ->where('products.price', 'LIKE', '%' . $req[1] . '%')
+            //         ->where('products.unit', 'LIKE', '%' .  $req[0] . '%');
+            // })
             ->select('products.product_name', 'stock_ins.quantity', 'products.price', 'products.unit', 'stock_outs.stock_out_qty', 'stock_outs.payment')
             ->get();
         return $products;
