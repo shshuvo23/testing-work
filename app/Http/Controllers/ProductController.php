@@ -31,6 +31,11 @@ class ProductController extends Controller
         //     ->select('products.product_name', 'stock_ins.quantity', 'products.price', 'products.unit', 'stock_outs.stock_out_qty', 'stock_outs.payment')
         //     ->get();
         // return $products;
-        return view('product.manage', ['products' => $products]);
+        return view('product.manage', ['products' => $products, 'search' => $request->search]);
+    }
+
+    public function details($id)
+    {
+        return view('product.detail', ['product' => Product::find($id)]);
     }
 }

@@ -39,7 +39,7 @@
                           </select>
                         </div>
                         <div class="col-12">
-                          <button class="btn btn-primary" type="submit">Add Product</button>
+                          <button class="btn btn-outline-success" type="submit">Add Product</button>
                         </div>
                       </form>
                 </div>
@@ -61,6 +61,11 @@
             <div class="card col-md-4">
                 <h5>For Stock Out click here...</h5>
                 <a href="{{route('product.stock-out')}}" class="btn btn-primary">Stock Out</a>
+            </div>
+
+            <div class="card col-md-4">
+                <h5>For </h5>
+                <a href="{{route('daynamicTable')}}" class="btn btn-primary">Stock Out</a>
             </div>
         </div>
     </div>
