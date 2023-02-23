@@ -25,4 +25,14 @@ class QuestionController extends Controller
     $questions = Qustion::get();
         return view('question.tableBody', compact('questions'));
     }
+
+    public function create(Request $request)
+    {
+        Qustion::updateQuestion($request);
+    }
+
+    public function delete(Request $request)
+    {
+        Qustion::deleteQuestion($request);
+    }
 }

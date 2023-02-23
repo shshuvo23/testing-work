@@ -14,4 +14,14 @@ class OptionController extends Controller
         $option->question_id = $a;
         $option->save();
     }
+
+    public function create(Request $request)
+    {
+        Option::updateOption($request);
+    }
+
+    public function delete(Request $request)
+    {
+        Option::deleteOption($request);
+    }
 }

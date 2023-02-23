@@ -65,7 +65,11 @@
 
             <div class="card col-md-4">
                 <h5>For </h5>
-                <a href="{{route('daynamicTable')}}" class="btn btn-primary">Stock Out</a>
+                <a href="{{route('daynamicTable')}}" class="btn btn-primary">Product list</a>
+            </div>
+            <div class="card col-md-4">
+                <h5>For </h5>
+                <a href="{{route('question')}}" class="btn btn-primary">Question Make</a>
             </div>
         </div>
     </div>

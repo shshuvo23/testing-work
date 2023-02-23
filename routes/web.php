@@ -40,8 +40,13 @@ Route::get('/Daynamictabl/add', [DynamicTableController::class, 'table'])->name(
 
 Route::get('/question', [QuestionController::class, 'index'])->name('question');
 Route::get('/question/add', [QuestionController::class, 'addquestion'])->name('question.add');
+Route::get('/question/create', [QuestionController::class, 'create'])->name('question.create');
+Route::get('/question/delete', [QuestionController::class, 'delete'])->name('question.delete');
 
 Route::get('/option/add', [OptionController::class, 'addOption'])->name('question.option');
+Route::get('/option/create', [OptionController::class, 'create'])->name('option.create');
+
+Route::get('/option/delete', [OptionController::class, 'delete'])->name('option.delete');
 
 
 
